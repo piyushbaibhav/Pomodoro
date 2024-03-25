@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import Progress from "./components/Progress";
 
@@ -7,6 +8,7 @@ function App() {
   const [timeLeft, setTimeLeft] = useState(sessionLength * 60);
   const [timerRunning, setTimerRunning] = useState(false);
   const [sessionCount, setSessionCount] = useState(0);
+  const [isSession, setIsSession] = useState(true); // Track if it's a session or break
 
   useEffect(() => {
     let interval;
@@ -17,15 +19,26 @@ function App() {
     } else if (timeLeft === 0) {
       // Timer ends, switch to break or session
       setTimerRunning(false);
-      setSessionCount(sessionCount + 1);
-      if (sessionCount % 2 === 0) {
+      if (isSession) {
+        // If it's a session, switch to break
+        setIsSession(false);
         setTimeLeft(breakLength * 60);
       } else {
+        // If it's a break, switch to session and increase session count
+        setIsSession(true);
+        setSessionCount(sessionCount + 1);
         setTimeLeft(sessionLength * 60);
       }
     }
     return () => clearInterval(interval);
-  }, [timerRunning, timeLeft, sessionLength, breakLength, sessionCount]);
+  }, [
+    timerRunning,
+    timeLeft,
+    sessionLength,
+    breakLength,
+    sessionCount,
+    isSession,
+  ]);
 
   const startTimer = () => {
     setTimerRunning(true);
@@ -39,6 +52,7 @@ function App() {
     setTimerRunning(false);
     setTimeLeft(sessionLength * 60);
     setSessionCount(0);
+    setIsSession(true);
   };
 
   const formatTime = (time) => {
@@ -53,7 +67,10 @@ function App() {
     if (!timerRunning) {
       const newSessionLength = Math.max(1, sessionLength + increment);
       setSessionLength(newSessionLength);
-      setTimeLeft(newSessionLength * 60);
+      if (isSession) {
+        // Update time left only if it's currently a session
+        setTimeLeft(newSessionLength * 60);
+      }
     }
   };
 
@@ -61,7 +78,8 @@ function App() {
     if (!timerRunning) {
       const newBreakLength = Math.max(1, breakLength + increment);
       setBreakLength(newBreakLength);
-      if (sessionCount % 2 !== 0) {
+      if (!isSession) {
+        // Update time left only if it's currently a break
         setTimeLeft(newBreakLength * 60);
       }
     }
@@ -118,7 +136,7 @@ function App() {
           sessionLength={sessionLength}
           breakLength={breakLength}
           timeLeft={timeLeft}
-          sessionCount={sessionCount}
+          isSession={isSession}
         />
       </div>
       <div className="mt-8">
@@ -154,3 +172,4 @@ function App() {
 }
 
 export default App;
+

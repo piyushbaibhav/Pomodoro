@@ -1,9 +1,8 @@
 
 import React from "react";
 
-const Progress = ({ sessionLength, breakLength, timeLeft, sessionCount }) => {
-  const totalTime =
-    sessionCount % 2 === 0 ? sessionLength * 60 : breakLength * 60;
+const Progress = ({ sessionLength, breakLength, timeLeft, isSession }) => {
+  const totalTime = isSession ? sessionLength * 60 : breakLength * 60;
 
   const calculateProgress = () => {
     return ((totalTime - timeLeft) / totalTime) * 100;
@@ -27,3 +26,4 @@ const Progress = ({ sessionLength, breakLength, timeLeft, sessionCount }) => {
 };
 
 export default Progress;
+
