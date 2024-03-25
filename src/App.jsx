@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import Progress from './components/Progress';
+import React, { useState, useEffect } from "react";
+import Progress from "./components/Progress";
 
 function App() {
   const [sessionLength, setSessionLength] = useState(25);
@@ -44,7 +44,9 @@ function App() {
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
-    return `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    return `${minutes < 10 ? "0" : ""}${minutes}:${
+      seconds < 10 ? "0" : ""
+    }${seconds}`;
   };
 
   const handleSessionLengthChange = (increment) => {
@@ -112,24 +114,40 @@ function App() {
       </div>
       <div className="mt-8">
         <div className="text-4xl font-bold">{formatTime(timeLeft)}</div>
-        <Progress totalTime={sessionLength * 60} timeLeft={timeLeft} />
+        <Progress
+          sessionLength={sessionLength}
+          breakLength={breakLength}
+          timeLeft={timeLeft}
+          sessionCount={sessionCount}
+        />
       </div>
       <div className="mt-8">
         {!timerRunning ? (
-          <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 mr-4 rounded" onClick={startTimer}>
+          <button
+            className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 mr-4 rounded"
+            onClick={startTimer}
+          >
             Start
           </button>
         ) : (
-          <button className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 mr-4 rounded" onClick={pauseTimer}>
+          <button
+            className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 mr-4 rounded"
+            onClick={pauseTimer}
+          >
             Pause
           </button>
         )}
-        <button className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded" onClick={resetTimer}>
+        <button
+          className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded"
+          onClick={resetTimer}
+        >
           Reset
         </button>
       </div>
       <div className="mt-8">
-        <p className="text-lg font-semibold">Completed Sessions: {sessionCount}</p>
+        <p className="text-lg font-semibold">
+          Completed Sessions: {sessionCount}
+        </p>
       </div>
     </div>
   );
