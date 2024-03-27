@@ -103,12 +103,14 @@ function App() {
   };
   
 
-  return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-200">
-      <h1 className="text-4xl font-bold mb-8">Pomodoro Timer</h1>
+  return (<>
+    <nav className="flex justify-between w-full p-4 bg-black text-white">
+        <h1 className="text-4xl font-bold">Pomodoro Timer</h1>
+        </nav>
+    <div className=" flex flex-col items-center justify-center min-h-screen bg-black">
       <div className="flex items-center justify-center">
         <div className="flex flex-col items-center mr-4">
-          <p className="text-lg font-semibold mb-2">Session Length</p>
+          <p className="text-white text-lg font-semibold mb-2">Session Length</p>
           <div className="flex items-center">
             <button
               className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-l"
@@ -117,7 +119,7 @@ function App() {
             >
               -
             </button>
-            <p className="text-lg font-semibold px-4">{sessionLength}</p>
+            <p className="text-white text-lg font-semibold px-4">{sessionLength}</p>
             <button
               className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r"
               onClick={() => handleSessionLengthChange(1)}
@@ -128,7 +130,7 @@ function App() {
           </div>
         </div>
         <div className="flex flex-col items-center ml-4">
-          <p className="text-lg font-semibold mb-2">Break Length</p>
+          <p className="text-white text-lg font-semibold mb-2">Break Length</p>
           <div className="flex items-center">
             <button
               className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-l"
@@ -137,7 +139,7 @@ function App() {
             >
               -
             </button>
-            <p className="text-lg font-semibold px-4">{breakLength}</p>
+            <p className=" text-white text-lg font-semibold px-4">{breakLength}</p>
             <button
               className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r"
               onClick={() => handleBreakLengthChange(1)}
@@ -148,7 +150,7 @@ function App() {
           </div>
         </div>
         <div className="flex flex-col items-center ml-4">
-          <p className="text-lg font-semibold mb-2">Long Break Length</p>
+          <p className="text-white text-lg font-semibold mb-2">Long Break Length</p>
           <div className="flex items-center">
             <button
               className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-l"
@@ -157,7 +159,7 @@ function App() {
             >
               -
             </button>
-            <p className="text-lg font-semibold px-4">{longBreakLength}</p>
+            <p className=" text-white text-lg font-semibold px-4">{longBreakLength}</p>
             <button
               className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r"
               onClick={() => handleLongBreakLengthChange(1)}
@@ -169,7 +171,7 @@ function App() {
         </div>
       </div>
       <div className="mt-8">
-        <div className="text-4xl font-bold">{formatTime(timeLeft)}</div>
+        <div className="text-white text-4xl font-bold">{formatTime(timeLeft)}</div>
         {/* Progress component remains unchanged */}
         <Progress
           sessionLength={sessionLength}
@@ -201,12 +203,13 @@ function App() {
           Reset
         </button>
       </div>
-      <div className="mt-8">
+      <div className="text-white mt-8">
         <p className="text-lg font-semibold">
           Completed Sessions: {sessionCount}
         </p>
       </div>
     </div>
+    </>
   );
 }
 
