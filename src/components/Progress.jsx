@@ -9,18 +9,18 @@ const Progress = ({ sessionLength, breakLength, timeLeft, isSession }) => {
   };
 
   return (
-    <div className="w-full h-8 bg-gray-300 mt-4 rounded-full relative">
+    <div className="w-full h-8 bg-gray-300 mt-4 rounded-md relative">
       <div
         className="h-full bg-green-500 rounded-full"
         style={{ width: `${calculateProgress()}%` }}
       ></div>
-      <div
+      {/* <div
         className="radial-progress text-primary"
         style={{ "--value": `${calculateProgress()}` }}
         role="progressbar"
       >
         {Math.floor(calculateProgress())}%
-      </div>
+      </div> */}
     </div>
   );
 };

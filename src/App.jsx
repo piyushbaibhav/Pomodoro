@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import Progress from "./components/Progress";
 
@@ -9,13 +8,15 @@ function App() {
   const [timerRunning, setTimerRunning] = useState(false);
   const [sessionCount, setSessionCount] = useState(0);
   const [isSession, setIsSession] = useState(true); // Track if it's a session or break
+  const [longBreakLength, setLongBreakLength] = useState(30);
+  const [longBreakFrequency, setLongBreakFrequency] = useState(4);
 
   useEffect(() => {
     let interval;
     if (timerRunning && timeLeft > 0) {
       interval = setInterval(() => {
         setTimeLeft((prevTimeLeft) => prevTimeLeft - 1);
-      }, 1000);
+      }, 10);
     } else if (timeLeft === 0) {
       // Timer ends, switch to break or session
       setTimerRunning(false);
@@ -27,7 +28,7 @@ function App() {
         // If it's a break, switch to session and increase session count
         setIsSession(true);
         setSessionCount(sessionCount + 1);
-        setTimeLeft(sessionLength * 60);
+        setTimeLeft(sessionCount % longBreakFrequency === longBreakFrequency - 1 ? longBreakLength * 60 : sessionLength * 60);
       }
     }
     return () => clearInterval(interval);
@@ -38,6 +39,8 @@ function App() {
     breakLength,
     sessionCount,
     isSession,
+    longBreakFrequency,
+    longBreakLength,
   ]);
 
   const startTimer = () => {
@@ -85,6 +88,21 @@ function App() {
     }
   };
 
+  const handleLongBreakLengthChange = (increment) => {
+    if (!timerRunning) {
+      const newLongBreakLength = Math.max(1, longBreakLength + increment);
+      setLongBreakLength(newLongBreakLength);
+      if (!isSession && sessionCount % longBreakFrequency === longBreakFrequency - 1) {
+        // Update time left only if it's currently a long break
+        setTimeLeft(newLongBreakLength * 60);
+      }
+    } else if (!isSession && sessionCount % longBreakFrequency === longBreakFrequency - 1) {
+      // Update time left dynamically during long break
+      setTimeLeft((prevTimeLeft) => Math.max(1, prevTimeLeft + increment * 60));
+    }
+  };
+  
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-200">
       <h1 className="text-4xl font-bold mb-8">Pomodoro Timer</h1>
@@ -129,9 +147,30 @@ function App() {
             </button>
           </div>
         </div>
+        <div className="flex flex-col items-center ml-4">
+          <p className="text-lg font-semibold mb-2">Long Break Length</p>
+          <div className="flex items-center">
+            <button
+              className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-l"
+              onClick={() => handleLongBreakLengthChange(-1)}
+              disabled={timerRunning}
+            >
+              -
+            </button>
+            <p className="text-lg font-semibold px-4">{longBreakLength}</p>
+            <button
+              className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r"
+              onClick={() => handleLongBreakLengthChange(1)}
+              disabled={timerRunning}
+            >
+              +
+            </button>
+          </div>
+        </div>
       </div>
       <div className="mt-8">
         <div className="text-4xl font-bold">{formatTime(timeLeft)}</div>
+        {/* Progress component remains unchanged */}
         <Progress
           sessionLength={sessionLength}
           breakLength={breakLength}
@@ -172,4 +211,3 @@ function App() {
 }
 
 export default App;
-
