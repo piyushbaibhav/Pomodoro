@@ -10,7 +10,8 @@ function App() {
   const [isSession, setIsSession] = useState(true); // Track if it's a session or break
   const [longBreakLength, setLongBreakLength] = useState(30);
   const [longBreakFrequency, setLongBreakFrequency] = useState(4);
-  const [currentAudio, setCurrentAudio] = useState(null);
+  // const [currentAudio, setCurrentAudio] = useState(null);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     let interval;
@@ -78,17 +79,24 @@ function App() {
     }
   };
 
-  const playAudio = (audioFile) => {
-    if (currentAudio) {
-      // Pause the current audio if any is playing
-      currentAudio.pause();
+  const toggleAudio = () => {
+    const audioElement = document.getElementById("audioElement");
+    if (isPlaying) {
+      pauseSound();
+    } else {
+      playSound();
     }
-    // Create a new Audio object for the clicked audio file
-    const audio = new Audio(audioFile);
-    // Play the audio
-    audio.play();
-    // Set the new audio as the current audio
-    setCurrentAudio(audio);
+    setIsPlaying(!isPlaying);
+  };
+
+  const playSound = () => {
+    const audioElement = document.getElementById("audioElement");
+    audioElement.play();
+  };
+
+  const pauseSound = () => {
+    const audioElement = document.getElementById("audioElement");
+    audioElement.pause();
   };
 
   const handleBreakLengthChange = (increment) => {
@@ -124,11 +132,13 @@ function App() {
         <div className="bg-black pt-5">
           <div className="flex">
                         <div className="  w-64 ml-[300px] mr-4">
+                        <audio id="audioElement" src="/forest.wav"></audio>
                       {/* Card 1 content */}
                       <button 
                       class="cardButton"
-                      onClick={() => playAudio("/music/audio-file1.mp3")}
+                      onClick={toggleAudio}
                       >
+                        {isPlaying ? "Pause" : "Play"}
 						<svg
 							width="45"
 							height="56"
