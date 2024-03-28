@@ -1,8 +1,33 @@
-# React + Vite
+# Pomodoro Timer 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The Pomodoro Timer is a simple React application that helps you manage your work and break intervals using the Pomodoro Technique. This technique involves breaking work into intervals, traditionally 25 minutes in length, separated by short breaks.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Set custom session length: Adjust the duration of your work sessions according to your preference.
+
+- Set custom break length: Define the length of your short breaks to fit your workflow.
+
+- Start, pause, and reset timer: Control the timer as needed to manage your work and breaks effectively.
+
+- Audio notifications: Receive audio cues at the end of each session or break to signal when it's time to switch tasks.
+
+- Long break option: Optionally, configure the app to provide longer breaks after a certain number of work sessions.
+
+## Usage
+
+- Adjust session length: Use the "+" and "-" buttons to increase or decrease the session length.
+
+- Adjust break length: Similarly, use the buttons to adjust the duration of short breaks.
+
+- Start the timer: Click the "Play" button to start the timer.
+
+- Pause the timer: Click the "Pause" button to pause the timer.
+
+- Reset the timer: Click the "Reset" button to stop the timer and reset it to the default session length.
+
+- Audio control: Use the audio toggle button to play or pause the notification sound.
+
+## Contributing
+
+Contributions to the Pomodoro Timer project are welcome! Feel free to submit bug reports, feature requests, or pull requests to help improve the application.
