@@ -154,8 +154,12 @@ function App() {
 					</button>
                     </div>
                     <div className="  w-64 mr-4">
+                    <audio id="audioElement" src="/rain.wav"></audio>
                       {/* Card 2 content */}
-                      <button class="cardButton">
+                      <button
+                      onClick={toggleAudio}
+                      class="cardButton">
+                        {isPlaying ? "Pause" : "Play"}
 						<svg
 							width="53"
 							height="56"
@@ -171,8 +175,12 @@ function App() {
 					</button>
                     </div>
                     <div className=" w-64 mr-4">
+                    <audio id="audioElement" src="/fire.wav"></audio>
                       {/* Card 3 content */}
-                      <button class="cardButton">
+                      <button 
+                      onClick={toggleAudio}
+                      class="cardButton">
+                        {isPlaying ? "Pause" : "Play"}
 						<svg
 							width="48"
 							height="56"
@@ -188,8 +196,12 @@ function App() {
 					</button>
                     </div>
                     <div className="  w-64">
+                    <audio id="audioElement" src="/coffee.wav"></audio>
                       {/* Card 4 content */}
-                      <button class="cardButton">
+                      <button 
+                       onClick={toggleAudio}
+                      class="cardButton">
+                        {isPlaying ? "Pause" : "Play"}
 						<svg
 							width="56"
 							height="56"
