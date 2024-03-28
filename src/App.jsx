@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Progress from "./components/Progress";
 import Box from "./components/Box";
 import Input from "./components/Input";
+import Navbar from "./components/Navbar";
 
 function App() {
   const [sessionLength, setSessionLength] = useState(25);
@@ -156,9 +157,7 @@ function App() {
   
 
   return (<>
-   <nav className="flex justify-between w-full p-4 h-4 bg-black text-white">
-  <h1 className=" text-4xl font-medium underline underline-offset-[10px]"style={{ color: 'rgb(206 255 252)' }}>Pomodoro </h1>
-</nav>
+   <Navbar/>
         <div className="bg-black pt-5">
           <div className="flex">
                         <div className="  w-64 ml-[300px] mr-4">
