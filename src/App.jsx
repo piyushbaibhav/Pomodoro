@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Progress from "./components/Progress";
+import Box from "./components/Box";
+import Input from "./components/Input";
 
 function App() {
   const [sessionLength, setSessionLength] = useState(25);
@@ -12,6 +14,34 @@ function App() {
   const [longBreakFrequency, setLongBreakFrequency] = useState(4);
   // const [currentAudio, setCurrentAudio] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [todos,setToDo] = useState([]);
+
+  const removeToDo = (id) => {
+    console.log(id);
+    const newTodos = todos.filter(
+      (d, key) => {
+        if (key !== id){
+          return true;
+        }else {
+          return false;
+        }
+      }
+    )
+    setToDo(newTodos);
+  }
+
+  const addToDoHandler = (item) => {
+    // console.log(item);
+    setToDo(
+      [
+        ...todos,
+        {
+          item,
+          time: new Date().toLocaleTimeString()
+        }
+      ]
+    )
+  }
 
   useEffect(() => {
     let interval;
@@ -363,6 +393,14 @@ function App() {
         <p className="text-xl">
           Completed Sessions: {sessionCount}
         </p>
+      </div>
+    </div>
+    <h1 className="text-white flex justify-center items-center text-3xl font-medium pb-8 ">ToDo List</h1>
+    <div className="bg-black h-screen p-3 ">
+      <div className=" rounded mx-auto-max-w-[750px] min-h-[550px] shadow-2xl
+      bg-black">
+        <Input handler={addToDoHandler}/>
+        <Box data={todos} removeHandler = {removeToDo}/>
       </div>
     </div>
     </div>

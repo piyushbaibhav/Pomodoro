@@ -11,7 +11,7 @@ const Progress = ({ sessionLength, breakLength, timeLeft, isSession }) => {
   return (
     <div className="w-full h-8 bg-gray-600 mt-4 rounded-md relative">
       <div
-        className="h-full bg-green-300 rounded-md"
+        className="h-full bg-pink-400 rounded-md"
         style={{ width: `${calculateProgress()}%` }}
       ></div>
       {/* <div
