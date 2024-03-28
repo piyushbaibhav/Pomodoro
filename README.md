@@ -14,6 +14,10 @@ The Pomodoro Timer is a simple React application that helps you manage your work
 
 - Long break option: Optionally, configure the app to provide longer breaks after a certain number of work sessions.
 
+- LoFi audio for more concentration, play soothing audio to concentrate.
+
+- Todo list : User can create a todo list to complete.
+
 ## Usage
 
 - Adjust session length: Use the "+" and "-" buttons to increase or decrease the session length.
@@ -27,6 +31,10 @@ The Pomodoro Timer is a simple React application that helps you manage your work
 - Reset the timer: Click the "Reset" button to stop the timer and reset it to the default session length.
 
 - Audio control: Use the audio toggle button to play or pause the notification sound.
+
+- Lofi Audio: Play lofi audio to focus
+
+- Todo list: Make todo list to complete before timer ends
 
 ## Contributing
 
