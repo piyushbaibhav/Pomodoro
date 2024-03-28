@@ -126,9 +126,9 @@ function App() {
   
 
   return (<>
-    <nav className="flex justify-between w-full p-4 bg-black text-white">
-        <h1 className="text-4xl font-medium">Pomodoro Timer</h1>
-        </nav>
+   <nav className="flex justify-between w-full p-4 h-4 bg-black text-white">
+  <h1 className="text-4xl font-medium underline underline-offset-[10px]">Pomodoro </h1>
+</nav>
         <div className="bg-black pt-5">
           <div className="flex">
                         <div className="  w-64 ml-[300px] mr-4">

@@ -5,3 +5,9 @@
 body {
     font-family: 'Poppins', sans-serif;
   }
+
+  .custom-underline {
+    text-decoration-color: white;
+    text-decoration-thickness: 0.125rem; /* You can adjust the thickness as needed */
+  }
+  
