@@ -110,23 +110,21 @@ function App() {
     }
   };
 
-  const toggleAudio = () => {
-    const audioElement = document.getElementById("audioElement");
+  const toggleAudio = (audioId) => {
+    const audioElement = document.getElementById(audioId);
     if (isPlaying) {
-      pauseSound();
+      pauseSound(audioElement);
     } else {
-      playSound();
+      playSound(audioElement);
     }
     setIsPlaying(!isPlaying);
   };
-
-  const playSound = () => {
-    const audioElement = document.getElementById("audioElement");
+  
+  const playSound = (audioElement) => {
     audioElement.play();
   };
-
-  const pauseSound = () => {
-    const audioElement = document.getElementById("audioElement");
+  
+  const pauseSound = (audioElement) => {
     audioElement.pause();
   };
 
@@ -161,11 +159,11 @@ function App() {
         <div className="bg-black pt-5">
           <div className="flex">
                         <div className="  w-64 ml-[300px] mr-4">
-                        <audio id="audioElement" src="/forest.wav"></audio>
+                        <audio id="audioElement1" src="/forest.wav"></audio>
                       {/* Card 1 content */}
                       <button 
                       class="cardButton"
-                      onClick={toggleAudio}
+                      onClick={() => toggleAudio("audioElement1")}
                       >
                         {isPlaying ? "Pause" : "Play"}
 						<svg
@@ -183,10 +181,10 @@ function App() {
 					</button>
                     </div>
                     <div className="  w-64 mr-4">
-                    <audio id="audioElement" src="/rain.wav"></audio>
+                    <audio id="audioElement2" src="/rain.wav"></audio>
                       {/* Card 2 content */}
                       <button
-                      onClick={toggleAudio}
+                      onClick={() => toggleAudio("audioElement2")}
                       class="cardButton">
                         {isPlaying ? "Pause" : "Play"}
 						<svg
@@ -204,10 +202,10 @@ function App() {
 					</button>
                     </div>
                     <div className=" w-64 mr-4">
-                    <audio id="audioElement" src="/fire.wav"></audio>
+                    <audio id="audioElement3" src="/fire.wav"></audio>
                       {/* Card 3 content */}
                       <button 
-                      onClick={toggleAudio}
+                      onClick={() => toggleAudio("audioElement3")}
                       class="cardButton">
                         {isPlaying ? "Pause" : "Play"}
 						<svg
@@ -225,10 +223,10 @@ function App() {
 					</button>
                     </div>
                     <div className="  w-64">
-                    <audio id="audioElement" src="/coffee.wav"></audio>
+                    <audio id="audioElement4" src="/coffee.wav"></audio>
                       {/* Card 4 content */}
                       <button 
-                       onClick={toggleAudio}
+                       onClick={() => toggleAudio("audioElement4")}
                       class="cardButton">
                         {isPlaying ? "Pause" : "Play"}
 						<svg
