@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
+import gsap from "gsap"
 import Progress from "./components/Progress";
 import Box from "./components/Box";
 import Input from "./components/Input";
@@ -16,6 +17,41 @@ function App() {
   // const [currentAudio, setCurrentAudio] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [todos,setToDo] = useState([]);
+
+  //gsap
+  const comp = useRef(null)
+
+  useLayoutEffect(() => {
+    let ctx = gsap.context(() => {
+      const t1 = gsap.timeline()
+      t1.from("#intro-slider", {
+        xPercent: "-100",
+        duration: 0.5,
+        delay: 0.3,
+      })
+        .from(["#title-1", "#title-2", "#title-3"], {
+          opacity: 0,
+          y: "+=30",
+          stagger: 0.5,
+        })
+        // .to(["#title-1", "#title-2", "#title-3"], {
+        //   opacity: 0,
+        //   y: "-=30",
+        //   delay: 0.3,
+        //   stagger: 0.5,
+        // })
+        // .to("#intro-slider", {
+        //   xPercent: "-100",
+        //   duration: 1.3,
+        // })
+        // .from("#welcome", {
+        //   opacity: 0,
+        //   duration: 0.5,
+        // })
+    }, comp)
+
+    return () => ctx.revert()
+  }, [])
 
   const removeToDo = (id) => {
     console.log(id);
@@ -156,8 +192,8 @@ function App() {
 
   return (<>
    <Navbar/>
-        <div className="bg-black pt-5">
-          <div className="flex">
+        <div className="bg-black pt-5" ref={comp}>
+          <div className="flex" id="title-1">
                         <div className="  w-64 ml-[300px] mr-4">
                         <audio id="audioElement1" src="/forest.wav"></audio>
                       {/* Card 1 content */}
@@ -245,7 +281,7 @@ function App() {
                     </div>
           </div>
 
-    <div className=" flex flex-col items-center justify-center pb-32 min-h-screen bg-black">
+    <div className=" flex flex-col items-center justify-center pb-32 min-h-screen bg-black"id="title-2">
       
       <div className="flex items-center justify-center">
         <div className="flex flex-col items-center mr-4">
@@ -393,7 +429,7 @@ function App() {
       </div>
     </div>
     <h1 className="text-white flex justify-center items-center text-3xl font-medium pb-8 ">ToDo List</h1>
-    <div className="bg-black h-screen p-3 ">
+    <div className="bg-black h-screen p-3 "id="title-3">
       <div className=" rounded mx-auto-max-w-[750px] min-h-[550px] shadow-2xl
       bg-black">
         <Input handler={addToDoHandler}/>
